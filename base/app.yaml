@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-downscaler
+  namespace: argocd
+spec:
+  destination:
+    namespace: "dummy" # Changed in overlays
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: kube-downscaler
+    repoURL: https://charts.deliveryhero.io/
+    targetRevision: 0.7.0
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+
