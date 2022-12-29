@@ -1,4 +1,4 @@
 # Setting namespace name
 - op: add
   path: /spec/destination/namespace
-  value: "default"
+  value: "kube-downscaler"

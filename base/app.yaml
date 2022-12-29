@@ -9,20 +9,12 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: deliveryhero
-    helm:
-      values: |
-        mode: distributed
-        podAnnotations:
-          sidecar.istio.io/inject: "true"
-        global:
-          imagePullSecrets:
-          - eboksstarlightdockerhub
+    chart: kube-downscaler
     repoURL: https://charts.deliveryhero.io/
-    targetRevision: 22.9.0
+    targetRevision: 0.7.0
   syncPolicy:
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
