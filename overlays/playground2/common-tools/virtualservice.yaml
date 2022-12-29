@@ -1,0 +1,7 @@
+# Setting Minio URL for ingress
+- op: replace
+  path: /spec/hosts/0
+  value: "cluster1.eu-west-1.e-boks-playground2.com"
+- op: replace
+  path: /spec/gateways/0
+  value: "istio-ingress/istio-external-gateway"

@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-downscaler
+  namespace: argocd
+spec:
+  destination:
+    namespace: "dummy" # Changed in overlays
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: deliveryhero
+    helm:
+      values: |
+        mode: distributed
+        podAnnotations:
+          sidecar.istio.io/inject: "true"
+        global:
+          imagePullSecrets:
+          - eboksstarlightdockerhub
+    repoURL: https://charts.deliveryhero.io/
+    targetRevision: 22.9.0
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=false
+    automated:
+      selfHeal: true
+      prune: true
+
